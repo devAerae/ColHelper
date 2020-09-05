@@ -2,6 +2,7 @@
 Geometry Dash 합작하는 사람들을 위한 툴.
 
 ### 사용방법
+1. **Geometry Dash를 종료합니다**
 1. `main.py` 또는 `ColHelper.exe`를 실행하세요
 2. 세 가지 기능 중 선택하세요
     1. 맵 선택
