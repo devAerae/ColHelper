@@ -134,6 +134,6 @@ while num != 3:
     if num == 1:
         print_txt()  # 맵 선택하기
     if num == 2:
-        restore()  # 유사시 맵 복원하기(미완성)
+        restore()  # 유사시 맵 복원하기
     if num == 3:
         break
