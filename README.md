@@ -1,8 +1,8 @@
+[한글(Korean)](README_KR.md)
 # ColHelper
 A Program for Geometry Dash Creators!
 
-[한글(Korean)](README_KR.md)
-
+[Download](https://github.com/GyuminKim29/ColHelper/releases/tag/v1.1)
 ### How to use
 1. **Close 'Geometry Dash'**
 1. run `main.py` or `ColHelper.exe`
