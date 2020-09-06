@@ -1,6 +1,8 @@
 # ColHelper
 Geometry Dash 합작하는 사람들을 위한 툴.
 
+[다운로드](https://github.com/GyuminKim29/ColHelper/releases/tag/v1.1_KR)
+
 ### 사용방법
 1. **Geometry Dash를 종료합니다**
 1. `main.py` 또는 `ColHelper.exe`를 실행하세요
