@@ -109,6 +109,13 @@ def print_txt():
             process(levels[number]['s'][lvl])
 
 
+def restore():
+    fr = open(fPath + 'CCLocalLevels.dat', 'wb')
+    fr.write(res.encode())
+    fr.close()
+    print('복원되었습니다.')
+
+
 fPath = os.getenv('localappdata') + '\\GeometryDash\\'
 
 res = read_file(fPath + 'CCLocalLevels.dat')
@@ -127,6 +134,6 @@ while num != 3:
     if num == 1:
         print_txt()  # 맵 선택하기
     if num == 2:
-        print('아직 안 만듦 ㅎ')  # 유사시 맵 복원하기(미완성)
+        restore()  # 유사시 맵 복원하기(미완성)
     if num == 3:
         break
