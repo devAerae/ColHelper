@@ -1,7 +1,7 @@
 # ColHelper
 A Program for Geometry Dash Creators!
 
-
+[한글 버전](README_KR.md)
 
 ### How to use
 1. **Close 'Geometry Dash'**
