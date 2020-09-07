@@ -94,10 +94,10 @@ def process(map_string):
 
 def print_txt():
     for a in range(len(levels)):
-        if len(levels[a]['s']) < 5:
-            print(str(a + 1) + '. ' + levels[a]['s'][0])
-        else:
-            print(str(a + 1) + '. ' + levels[a]['s'][1])
+        b = 0
+        if ',' in levels[a]['s'][b] or levels[a]['s'][b].isdigit() and len(levels[a]['s'][b]) < 4:
+            b += 1
+        print(levels[a]['s'][b])
     number = int(input('맵을 번호로 선택해주세요 :')) - 1
     if number < 0 or number > len(levels) - 1:
         print('올바르지 않은 번호입니다')
@@ -134,6 +134,6 @@ while num != 3:
     if num == 1:
         print_txt()  # 맵 선택하기
     if num == 2:
-        restore()  # 유사시 맵 복원하기
+        restore()  # 유사시 맵 복원하기(미완성)
     if num == 3:
         break
