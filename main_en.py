@@ -97,7 +97,8 @@ def print_txt():
         b = 0
         if ',' in levels[a]['s'][b] or levels[a]['s'][b].isdigit() and len(levels[a]['s'][b]) < 4:
             b += 1
-        print(levels[a]['s'][b])
+        print((str(a + 1)) + '. ' + levels[a]['s'][b])
+
     number = int(input('Select level by number :')) - 1
     if number < 0 or number > len(levels) - 1:
         print('Incorrect input!')
