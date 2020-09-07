@@ -23,5 +23,6 @@ A Program for Geometry Dash Creators!
 - [ ] To add comments
 
 ### Known bugs
-* It somtimes displays level's name as strange numbers
+* ~~It somtimes displays level's name as strange numbers~~
+> Fixed in v1.2
 * Plz tell me!
