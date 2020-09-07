@@ -16,7 +16,7 @@ A Program for Geometry Dash Creators!
 3. Enter the number of level to select **by number**
 4. Enter the starting range by number
 5. Enter the end range by number
-6. It copy color channels into Col triggers autoautomatically and place them at `(0,15)`
+6. It copies color channels into Col triggers autoautomatically and places them at `(0,15)`
 
 ### To Do List
 - [x] English translation
