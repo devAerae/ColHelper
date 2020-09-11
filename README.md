@@ -2,7 +2,7 @@
 # ColHelper
 A Program for Geometry Dash Creators!
 
-[Download](https://github.com/GyuminKim29/ColHelper/releases/tag/v1.1)
+[Download](https://github.com/GyuminKim29/ColHelper/releases/tag/v1.2)
 ### How to use
 
 >Please save your GD data before using this program...
