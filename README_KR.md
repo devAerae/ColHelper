@@ -1,7 +1,9 @@
+[English(영어)](https://github.com/GyuminKim29/ColHelper/blob/master/README_KR.md)
+
 # ColHelper
 Geometry Dash 합작하는 사람들을 위한 툴.
 
-[다운로드](https://github.com/GyuminKim29/ColHelper/releases/tag/v1.1_KR)
+[다운로드](https://github.com/GyuminKim29/ColHelper/releases/tag/v1.2_KR)
 
 ### 사용방법
 1. **Geometry Dash를 종료합니다**
@@ -21,5 +23,5 @@ Geometry Dash 합작하는 사람들을 위한 툴.
 
 ### 알려진 버그
 * ~~간혹 맵 이름 대신 이상한 숫자가 뜰 때가 있습니다~~
-> v1.1 에서 수정되었습니다
+> v1.2 에서 수정되었습니다
 * 제보해주세요!
