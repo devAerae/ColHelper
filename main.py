@@ -1,9 +1,10 @@
 import os
 import gzip
+from tkinter import messagebox
 import zlib
 import base64
 import xmltodict
-
+from tkinter import *
 
 def read_file(path: str) -> str:
     fr = open(path, 'rb')
@@ -40,7 +41,20 @@ def encode_level(level_string: str) -> str:
     return base64_encoded.decode()
 
 
-def process(map_string):
+def process():
+    n1 = int(input('시작 범위를 정해주세요 :'))
+    n2 = int(input('끝 범위를 정해주세요 :'))
+
+    number = int(inputBox.get(1.0, END+"-1c")) - 1
+    if number < 0 or number > len(levels) - 1:
+        messagebox.showinfo("오류", "올바르지 않은 번호입니다")
+    else:
+        lvl = 1
+        while 'H4sIAAAAAAAA' not in levels[number]['s'][lvl]:
+            lvl += 1
+        else:
+            map_string = levels[number]['s'][lvl]
+
     col_string = str(decode_level(map_string)).split(';')[0].split(',')[1].split('|')
     del col_string[-1]
 
@@ -59,9 +73,6 @@ def process(map_string):
             odd = temp[i + 1]
             col_dict[even] = odd
         col_final = col_final + [col_dict]
-
-    n1 = int(input('시작 범위를 정해주세요 :'))
-    n2 = int(input('끝 범위를 정해주세요 :'))
 
     obj_base = '1,899,2,1,3,15,36,1,'  # Col 오브젝트 배치
     obj_fin = []
@@ -89,52 +100,55 @@ def process(map_string):
     fr = open(fPath + 'CCLocalLevels.dat', 'wb')
     fr.write(encrypt_data(fin.replace(map_string, changed_map)).encode())
     fr.close()
-    print('완료되었습니다.')
+    messagebox.showinfo("완료", "완료되었습니다")
 
 
 def print_txt():
+    global inputBox
+    listPopup = Toplevel(root)
+    titleLabel = Label(listPopup, text="맵을 번호로 선택해주세요")
+    okBtn = Button(listPopup, width=10, text="확인", overrelief="solid", command=process)
+    titleLabel.pack()
+    inputBox = Entry(listPopup, width=10)
+    n1Input = Entry(listPopup, width=10)
     for a in range(len(levels)):
         b = 0
         if ',' in levels[a]['s'][b] or levels[a]['s'][b].isdigit() and len(levels[a]['s'][b]) < 4:
             b += 1
-        print((str(a + 1)) + '. ' + levels[a]['s'][b])
-
-    number = int(input('맵을 번호로 선택해주세요 :')) - 1
-    if number < 0 or number > len(levels) - 1:
-        print('올바르지 않은 번호입니다')
-    else:
-        lvl = 1
-        while 'H4sIAAAAAAAA' not in levels[number]['s'][lvl]:
-            lvl += 1
-        else:
-            process(levels[number]['s'][lvl])
+        levelLabel = Label(listPopup, text=(str(a + 1)) + '. ' + levels[a]['s'][b])
+        levelLabel.pack()
+    inputBox.pack()
+    okBtn.pack()
 
 
 def restore():
     fr = open(fPath + 'CCLocalLevels.dat', 'wb')
     fr.write(res.encode())
     fr.close()
-    print('복원되었습니다.')
+    messagebox.showinfo("복원완료", "복원되었습니다")
+
+def loadGUI():
+    root.title("ColHelper")
+    root.geometry("300x200")
+    title = Label(root, text="ColHelper (한글)")
+    title.pack()
+
+    selectLevelBtn = Button(root, width=20, text="맵 선택하기", overrelief="solid", command=print_txt)
+    restoreBtn = Button(root, width=20, text="맵 복원하기", overrelief="solid", command=restore)
+    exitBtn = Button(root, width=20, text="나가기", overrelief="solid", command=exit)
+    selectLevelBtn.pack()
+    restoreBtn.pack()
+    exitBtn.pack()
 
 
+
+root = Tk()
 fPath = os.getenv('localappdata') + '\\GeometryDash\\'
-
 res = read_file(fPath + 'CCLocalLevels.dat')
 fin = decrypt_data(res)
 dic = xmltodict.parse(fin)
 levels = dic['plist']['dict']['d']['d']
 
-txt = '''
-1. 맵 선택하기
-2. 맵 복원하기
-3. 나가기
-'''
-num = 0
-while num != 3:
-    num = int(input(txt))
-    if num == 1:
-        print_txt()  # 맵 선택하기
-    if num == 2:
-        restore()  # 유사시 맵 복원하기(미완성)
-    if num == 3:
-        break
+if __name__ == "__main__":
+    loadGUI()
+    root.mainloop()
