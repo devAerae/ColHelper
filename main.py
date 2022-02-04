@@ -1,6 +1,9 @@
+from asyncio import windows_utils
+from copyreg import constructor
 import os
 import gzip
 from tkinter import messagebox
+from turtle import width
 import zlib
 import base64
 import xmltodict
@@ -40,12 +43,36 @@ def encode_level(level_string: str) -> str:
     base64_encoded = base64.urlsafe_b64encode(gzipped)
     return base64_encoded.decode()
 
+def getn1():
+    global n1Input, n1Popup
+    n1Popup = Toplevel(listPopup)
+    n1LabelText = StringVar()
+    n1LabelText.set("시작 범위")
+    n1Label = Label(n1Popup, textvariable=n1LabelText, height=4)
+    n1Label.pack(side="left")
+    n1Input = Entry(n1Popup, width=10)
+    n1Input.pack(side="left")
+    n1OkBtn = Button(n1Popup, width=5, text="확인", overrelief="solid", command=getn2)
+    n1OkBtn.pack(side="left")
+
+def getn2():
+    global n2Input, n2Popup
+    n2Popup = Toplevel(n1Popup)
+    n2LabelText = StringVar()
+    n2LabelText.set("끝 범위")
+    n2Label = Label(n2Popup, textvariable=n2LabelText, height=4)
+    n2Label.pack(side="left")
+    n2Input = Entry(n2Popup, width=10)
+    n2Input.pack(side="left")
+    n2OkBtn = Button(n2Popup, width=5, text="확인", overrelief="solid", command=process)
+    n2OkBtn.pack(side="left")
 
 def process():
-    n1 = int(input('시작 범위를 정해주세요 :'))
-    n2 = int(input('끝 범위를 정해주세요 :'))
+    number = int(inputBox.get()) - 1
 
-    number = int(inputBox.get(1.0, END+"-1c")) - 1
+    n1 = int(n1Input.get())
+    n2 = int(n2Input.get())
+
     if number < 0 or number > len(levels) - 1:
         messagebox.showinfo("오류", "올바르지 않은 번호입니다")
     else:
@@ -95,22 +122,23 @@ def process():
 
     obj_string = ';'.join(obj_fin) + ';'
     changed_map = 'H4sIAAAAAAAAA' + encode_level(decode_level(map_string) + obj_string)[13:]
-    print('맵을 저장하는 중입니다...')
 
     fr = open(fPath + 'CCLocalLevels.dat', 'wb')
     fr.write(encrypt_data(fin.replace(map_string, changed_map)).encode())
     fr.close()
+    listPopup.destroy()
+    n1Popup.destroy()
+    n2Popup.destroy()
     messagebox.showinfo("완료", "완료되었습니다")
 
 
 def print_txt():
-    global inputBox
+    global inputBox, listPopup
     listPopup = Toplevel(root)
     titleLabel = Label(listPopup, text="맵을 번호로 선택해주세요")
-    okBtn = Button(listPopup, width=10, text="확인", overrelief="solid", command=process)
+    okBtn = Button(listPopup, width=10, text="확인", overrelief="solid", command=getn1)
     titleLabel.pack()
     inputBox = Entry(listPopup, width=10)
-    n1Input = Entry(listPopup, width=10)
     for a in range(len(levels)):
         b = 0
         if ',' in levels[a]['s'][b] or levels[a]['s'][b].isdigit() and len(levels[a]['s'][b]) < 4:
