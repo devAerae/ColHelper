@@ -1,3 +1,7 @@
+# Notice
+I'm rewritting ColHelper with more features (like integrating Build Helper and etc) in Rust so that the program runs faster and more safely, using less memory.
+So I decided to archive this Repo, sorry!
+
 [한글(Korean)](README_KR.md)
 # ColHelper
 A Program for Geometry Dash Creators!
